@@ -1,0 +1,12 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		}
+	],
+	 "settings": {
+        "python_interpreter": "/home/giorgos/.virtualenvs/tictac/bin/python"
+    }
+}
