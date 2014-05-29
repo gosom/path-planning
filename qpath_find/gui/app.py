@@ -6,10 +6,11 @@ from PySide import QtGui, QtCore
 
 class TableWindow(QtGui.QWidget):
 
-    def __init__(self, _map, path):
+    def __init__(self, _map, path, rotated=True):
         QtGui.QWidget.__init__(self)
         self._map = _map
         rowcnt, colcnt = self._map.shape
+        self.rotated = rotated
         self.tablewidget = QtGui.QTableWidget(rowcnt, colcnt)
 
         for row in xrange(0, rowcnt):
@@ -28,7 +29,15 @@ class TableWindow(QtGui.QWidget):
                 color = (0, 128, 0)
             else:
                 color = (255, 255, 0)
-            self.tablewidget.item(x, y).setBackground(QtGui.QColor(*color))
+
+            if self.rotated:
+                c_x = colcnt - 1 - y
+                c_y = x
+            else:
+                c_x, c_y = x, y
+            #c_x = colcnt - 1 - y
+            #c_y = x
+            self.tablewidget.item(c_x, c_y).setBackground(QtGui.QColor(*color))
 
         # Header formatting
         font = QtGui.QFont()
